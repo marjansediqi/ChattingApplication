@@ -4,7 +4,7 @@ import 'package:chatapp/pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -18,7 +18,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   bool _isSignnedIn = false;
 
   @override
@@ -27,14 +26,19 @@ class _MyAppState extends State<MyApp> {
     getUserLoggedInStatus();
   }
 
-  getUserLoggedInStatus() async{
-    await HelperFunctions.getUserLoggedInStatus().then((value) {
-      if(value != null) {
-        setState(() {
-          _isSignnedIn = value;
-        });
-      }
-    });}
+  getUserLoggedInStatus() async {
+    await HelperFunctions.getUserLoggedInStatus().then(
+      (value) {
+        if (value != null) {
+          setState(
+            () {
+              _isSignnedIn = value;
+            },
+          );
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +51,4 @@ class _MyAppState extends State<MyApp> {
       home: _isSignnedIn ? HomePage() : LoginPage(),
     );
   }
-
-  }
-
-
-
+}
