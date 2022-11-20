@@ -133,3 +133,25 @@ class DatabaseService {
     });
   }
 }
+
+
+
+//get user groups
+getUserGroups() async{
+  return userCollection.doc(uid).snapshots();
+}
+
+//creating a group
+Future createGroup(String userName,String id,String groupName) async{
+  DocumentReference documentReference = await groupsCollection.add({
+   "groupName":groupName,
+   "groupIcon":"",
+  "admin":"${id}_$userName",
+  "members":[],
+  "groupId":"",
+  "resentMassage": "",
+   "recentMassageSender":"",
+  });
+}
+}
+
